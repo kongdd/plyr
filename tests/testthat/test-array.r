@@ -82,6 +82,7 @@ test_that("idempotent function equivalent to permutation",  {
   aaplys <- llply(perms, function(perm) aaply(x, perm, identity))
 
   for (i in seq_along(aperms)) {
+    # runningId(i)
     perm <- paste(perms[[i]], collapse = ", ")
     expect_that(dim(aaplys[[i]]), equals(dim(aperms[[i]])), perm)
     expect_that(unname(dimnames(aaplys[[i]])), equals(dimnames(aperms[[i]])),
@@ -195,7 +196,7 @@ test_that("no support for duplicate names (#211)", {
   dimnames(ar)[1:2] <- list(AB, AB)
 
   if (getRversion() >= "3.4.0") {
-    expect_error(aaply(ar, 3, identity), "duplicated")
+    expect_error(suppressWarnings(aaply(ar, 3, identity)), "duplicated")
   } else {
     expect_warning(aaply(ar, 3, identity), "Duplicate names")
   }

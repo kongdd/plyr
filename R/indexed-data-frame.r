@@ -29,7 +29,7 @@ extract_rows <- function(x, i) {
   out <- lapply(seq_len(n), extract_col_rows, df = x, i = i)
 
   names(out) <- names(x)
-  class(out) <- "data.frame"
+  class(out) <- class(x) #"data.frame"
   attr(out, "row.names") <- c(NA_integer_, -length(out[[1]]))
 
   out

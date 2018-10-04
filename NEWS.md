@@ -1,3 +1,7 @@
+# plyr 1.8.4.9001
+
+* `data.table` is supported now.
+
 # plyr 1.8.4.9000
 
 # Version 1.8.4

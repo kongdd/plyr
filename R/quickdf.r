@@ -6,12 +6,16 @@
 #'
 #' @param list list to convert to data frame
 #' @keywords internal
+#' @importFrom data.table is.data.table
 #' @export
 quickdf <- function(list) {
   rows <- unique(unlist(lapply(list, NROW)))
   stopifnot(length(rows) == 1)
 
   names(list) <- make_names(list, "X")
+  # list <- as.data.table(list)
+  
+  # class(list) <- class_attr 
   class(list) <- "data.frame"
   attr(list, "row.names") <- c(NA_integer_, -rows)
 

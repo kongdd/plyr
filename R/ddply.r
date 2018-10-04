@@ -47,7 +47,9 @@ ddply <- function(.data, .variables, .fun = NULL, ..., .progress = "none",
   .variables <- as.quoted(.variables)
   pieces <- splitter_d(.data, .variables, drop = .drop)
 
-  ldply(.data = pieces, .fun = .fun, ...,
+  res <- ldply(.data = pieces, .fun = .fun, ...,
     .progress = .progress, .inform = .inform,
     .parallel = .parallel, .paropts = .paropts)
+  class(res) <- class(.data)
+  res
 }

@@ -24,5 +24,9 @@ ldply <- function(.data, .fun = NULL, ..., .progress = "none", .inform = FALSE,
   } else {
     id_as_factor <- TRUE
   }
-  list_to_dataframe(res, attr(.data, "split_labels"), .id, id_as_factor)
+  res <- list_to_dataframe(res, attr(.data, "split_labels"), .id, id_as_factor)
+  
+  # class_attr <- class(.data[[1]])
+  # if ("data.table" %in% class_attr) class(res) <- class_attr 
+  res
 }

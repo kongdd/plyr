@@ -285,18 +285,21 @@ expect_linear_enough <- function(timings, threshold=0.1) {
 test_that("rbind.fill performance linear", {
   timings <- get_rbind_times(data.frame(size = 2 ^ (1:10)),
                              classes=c("numeric", "character", "array"))
+  skip_on_travis()
   expect_linear_enough(timings)
 })
 
 test_that("rbind.fill performance linear with factors", {
   timings <- get_rbind_times(data.frame(size = 2 ^ (1:10)),
                              classes=c("factor"))
+  skip_on_travis()
   expect_linear_enough(timings)
 })
 
 test_that("rbind.fill performance linear with times", {
   timings <- get_rbind_times(data.frame(size = 2 ^ (1:10)),
                              classes=c("time"))
+  skip_on_travis()
   expect_linear_enough(timings)
 })
 

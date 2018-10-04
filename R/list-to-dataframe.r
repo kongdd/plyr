@@ -58,9 +58,11 @@ list_to_dataframe <- function(res, labels = NULL, id_name = NULL, id_as_factor =
 
   # Add labels to results
   names(labels) <- make_names(labels, "X")
-
   cols <- setdiff(names(labels), names(resdf))
-  labels <- labels[rep(1:nrow(labels), rows), cols, drop = FALSE]
-
-  unrowname(cbind(labels, resdf))
+  
+  if (length(cols) > 0) {
+    labels <- labels[rep(1:nrow(labels), rows), cols, drop = FALSE]
+    resdf  <- cbind(labels, resdf)
+  }
+  unrowname(resdf)
 }

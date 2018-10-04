@@ -43,6 +43,12 @@ rbind.fill <- function(...) {
     stop("All inputs to rbind.fill must be data.frames", call. = FALSE)
   }
 
+  if (is.data.table(dfs[[1]])){
+    class_attr <- c('data.table', 'data.frame')
+  } else {
+    class_attr <- c('data.frame')
+  }
+
   # Calculate rows in output
   # Using .row_names_info directly is about 6 times faster than using nrow
   rows <- unlist(lapply(dfs, .row_names_info, 2L))
@@ -71,7 +77,9 @@ rbind.fill <- function(...) {
     }
   }
 
-  quickdf(lapply(getters, function(x) x()))
+  res <- quickdf(lapply(getters, function(x) x()))
+  class(res) <- class_attr
+  res
 }
 
 # Construct named lists of setters and getters.
