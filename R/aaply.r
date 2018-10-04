@@ -29,10 +29,10 @@
 #' aaply(ozone, 3, each(min, max))
 #'
 #' standardise <- function(x) (x - min(x)) / (max(x) - min(x))
-#' aaply(ozone, 3, standardise)
-#' aaply(ozone, 1:2, standardise)
+#' y_3 <- aaply(ozone, 3, standardise)
+#' y_12 <- aaply(ozone, 1:2, standardise)
 #'
-#' aaply(ozone, 1:2, diff)
+#' y_diff <- aaply(ozone, 1:2, diff)
 aaply <- function(.data, .margins, .fun = NULL, ..., .expand = TRUE,
                   .progress = "none", .inform = FALSE, .drop = TRUE,
                   .parallel = FALSE, .paropts = NULL) {
